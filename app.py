@@ -62,24 +62,28 @@ def load_user(user_id):
     return Employee.query.get(user_id)
 
 
-
-@app.route("/")
+@app.route("/home")
+@login_required
 def home():
     return render_template("index.html")
 
 @app.route("/create-member", methods=["GET", "POST"])
+@login_required
 def create_member():
     return render_template("create-member.html")
 
 @app.route("/edit-members")
+@login_required
 def edit_members():
     return render_template("edit-members.html")
 
 @app.route("/read-members")
+@login_required
 def read_members():
     return render_template("view-members.html")
 
 @app.route("/add-customer", methods=["GET", "POST"])
+@login_required
 def add_customer():
     if request.method=="POST":
         company = current_user.company
@@ -101,18 +105,19 @@ def add_customer():
     return render_template("create-customers.html")
 
 @app.route("/edit-customers")
+@login_required
 def edit_customers():
     return render_template("edit-customers.html")
 
-
-
 @app.route("/read-customers")
+@login_required
 def read_customers():
-    company = current_user.company
-    customers = Customer.query.filter_by(company=company).first()
-    return render_template("view-customer.html", customers=customers)
+    # company = current_user.company
+    # customers = Customer.query.filter_by(company=company).first()
+    return render_template("view-customer.html")
 
 @app.route("/send-notifications", methods=["GET", "POST"])
+@login_required
 def send_notifications():
     if request.method == "POST":
         pass
@@ -135,24 +140,28 @@ def login():
         flash("User not registered with email!")
         return redirect(url_for("login"))
 
-    return render_template("test.html")
-
-@app.route("/register", methods=["GET", "POST"])
+    return render_template("login.html")
+ 
+@app.route("/", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
         ename = request.form.get("ename")
+        email = request.form.get("email")
         password = request.form.get("password")
         company = request.form.get("company")
-        is_admin = request.form.get("is_admin")
+        is_admin = 1
         new_employee = Employee(
             ename=ename, 
             password=password, 
             company=company, 
+            email=email,
             is_admin=is_admin
         )
         db.session.add(new_employee)
         db.session.commit()
         login_user(new_employee)
+        return redirect(url_for('home'))
+    return render_template("register.html")
 
 @app.route("/logout")
 @login_required
