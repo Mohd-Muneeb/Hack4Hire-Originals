@@ -2,18 +2,10 @@
 
 
 
-<form style="margin-top: 10vh; width: 60vw; margin-left: 10vw;" method="POST"
-  action="">
+<form style="margin-top: 10vh; width: 60vw; margin-left: 10vw;" method="POST" action="">
   <p>Enter the Message</p>
   <label>Message</label>
   <input type="text" placeholder="Enter Message" name="message" class="card-input">
-
-  <!-- <input type="checkbox" name="mode[]" value="email" />
-  <label>Email</label>
-  <input type="checkbox" name="mode[]" value="sms" />
-  <label>SMS</label>
-  <input type="checkbox" name="mode[]" value="whatsapp" />
-  <label>Whatsapp</label> -->
 
   <div class="card-body">
     <h5 class="card-title">Table with stripped rows</h5>
@@ -30,6 +22,7 @@
             <th scope="col">Start Date</th>
           </tr>
         </thead>
+        {% for i in customers%}
 
         <tr>
           <th scope="row">5</th>
@@ -38,10 +31,11 @@
           <td>47</td>
 
           <td>
-            <input type="checkbox" />
+            <input type="checkbox" name="customers[]" value={{i}} />
           </td>
           <td>2011-04-19</td>
         </tr>
+        {% endfor %}
         </tbody>
       </table>
       <!-- End Table with stripped rows -->
