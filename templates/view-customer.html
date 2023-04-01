@@ -1,50 +1,52 @@
 {% include "header.html" %}
 
 
+<main id="main" class="main">
 
-<form style="margin-top: 10vh; width: 60vw; margin-left: 10vw;" method="POST" action="/">
-  <p>Enter the Message</p>
-  <label>Message</label>
-  <input type="text" placeholder="Enter Message" name="message" class="card-input">
+  <form style="margin-top: 10vh; width: 60vw; margin-left: 10vw;" method="POST" action="/">
+    <p>Enter the Message</p>
+    <label>Message</label>
+    <input type="text" placeholder="Enter Message" name="message" class="card-input">
 
-  <div class="card-body">
-    <h5 class="card-title">Table with stripped rows</h5>
-    <!-- Table with stripped rows -->
-    <div class="card">
-      <table class="table table-striped">
-        <thead>
+    <div class="card-body">
+      <h5 class="card-title">Table with stripped rows</h5>
+      <!-- Table with stripped rows -->
+      <div class="card">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Position</th>
+              <!-- <th scope="col">Age</th> -->
+              <th scope="col"></th>
+              <th scope="col">Start Date</th>
+            </tr>
+          </thead>
+          {% for i in customers%}
+
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Position</th>
-            <!-- <th scope="col">Age</th> -->
-            <th scope="col"></th>
-            <th scope="col">Start Date</th>
+            <th scope="row">5</th>
+            <td>{{i.name}}</td>
+            <td>{{i.number}}</td>
+            <!-- <td></td> -->
+
+            <td>
+              <input type="checkbox" name={{i}} />
+            </td>
+            <td>2011-04-19</td>
           </tr>
-        </thead>
-        {% for i in customers%}
-
-        <tr>
-          <th scope="row">5</th>
-          <td>{{i.name}}</td>
-          <td>{{i.number}}</td>
-          <!-- <td></td> -->
-
-          <td>
-            <input type="checkbox" name={{i}} />
-          </td>
-          <td>2011-04-19</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-      </table>
-      <!-- End Table with stripped rows -->
+          {% endfor %}
+          </tbody>
+        </table>
+        <!-- End Table with stripped rows -->
 
 
+      </div>
     </div>
-  </div>
-  <button type="submit" >Delete</button>
-  <button type="submit">Submit</button>
-</form>
+    <button type="submit">Delete</button>
+    <button type="submit">Submit</button>
+  </form>
+</main>
 
 {% include "footer.html" %}
