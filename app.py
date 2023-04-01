@@ -28,24 +28,6 @@ class Company(db.Model):
     can_email= db.Column(db.Integer, nullable=False)
     can_mobile= db.Column(db.Integer, nullable=False)
 
-# class company2(db.Model):
-#     __tablename__ = "company2"
-#     id = db.Column(db.Integer, primary_key = True)
-#     name = db.Column(db.Text, nullable = False)
-#     mobile = db.Column(db.Integer, nullable = False)
-#     email = db.Column(db.Text, nullable= False)
-#     can_email= db.Column(db.Integer, nullable=False)
-#     can_mobile= db.Column(db.Integer, nullable=False)
-
-# class company3(db.Model):
-#     __tablename__ = "company3"
-#     id = db.Column(db.Integer, primary_key = True)
-#     name = db.Column(db.Text, nullable = False)
-#     mobile = db.Column(db.Integer, nullable = False)
-#     email = db.Column(db.Text, nullable= False)
-#     can_email= db.Column(db.Integer, nullable=False)
-#     can_mobile= db.Column(db.Integer, nullable=False)
-
 with app.app_context():
     db.create_all()
 
@@ -65,9 +47,9 @@ def login():
 
     return render_template("test.html")
 
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    if request.method
+# @app.route("/register", methods=["GET", "POST"])
+# def register():
+#     if request.method
 
 
 @app.route("/members")
