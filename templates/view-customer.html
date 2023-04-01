@@ -4,10 +4,12 @@
 <main id="main" class="main">
 
   <form style="margin-top: 10vh; width: 60vw; margin-left: 10vw;" method="POST" action="{{ url_for('read_customers') }}">
-    <p>Enter the Message</p>
-    <label>Message</label>
-    <input type="text" placeholder="Enter Message" name="message" class="card-input" required>
+    <p style="color: blue; font-size: 1.5rem;">Enter the Message</p>
+    <div style="display: flex; gap: 1rem; justify-content: center;"> 
 
+    <label>Message</label>
+    <input type="text" placeholder="Enter Message"  name="message" class="form-control" id="inputEmail4" required>
+    </div>
     <div class="card-body">
       <h5 class="card-title">Table with stripped rows</h5>
       <!-- Table with stripped rows -->
@@ -45,7 +47,7 @@
       </div>
     </div>
     <!-- <button type="submit">Delete</button> -->
-    <button type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit">Submit</button>
   </form>
 </main>
 
