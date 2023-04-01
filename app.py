@@ -58,7 +58,6 @@ db2.create_all()
 def home():
     return render_template("index.html")
 
-<<<<<<< HEAD
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -70,13 +69,6 @@ def login():
     return render_template("test.html")
 
 # @app.route("")
-=======
-
-@app.route("/login")
-def login():
-
-    return render_template("login.html")
->>>>>>> 094dab91a4485b204c2e48e21082c10e4a75d92d
 
 
 @app.route("/members")
