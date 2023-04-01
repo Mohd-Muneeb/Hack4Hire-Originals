@@ -59,7 +59,7 @@ def members():
 
 @app.route("/customers")
 def customers():
-    return "customers"
+    return render_template("view-customer.html")
 
 
 if __name__ == "__main__":
