@@ -13,39 +13,40 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 class Employee( db.Model):
-    __tablename__ = "company1"
+    __tablename__ = "employees"
     id = db.Column(db.Integer, primary_key=True)
     ename = db.Column(db.Integer, nullable=False, unique=True)
     password = db.Column(db.Text, nullable=False)
     company = db.Column(db.Text, nullable=False)
     is_admin = db.Column(db.Integer, nullable=False)
 
-class company1(db.Model):
-    __tablename__ = "company1"
+class Company(db.Model):
+    __tablename__ = "company"
     id = db.Column(db.Integer, primary_key = True)
+    company = db.Coulumn(db.Text, nullable=False)
     name = db.Column(db.Text, nullable = False)
     mobile = db.Column(db.Integer, nullable = False)
     email = db.Column(db.Text, nullable= False)
     can_email= db.Column(db.Integer, nullable=False)
     can_mobile= db.Column(db.Integer, nullable=False)
 
-class company2(db.Model):
-    __tablename__ = "company2"
-    id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.Text, nullable = False)
-    mobile = db.Column(db.Integer, nullable = False)
-    email = db.Column(db.Text, nullable= False)
-    can_email= db.Column(db.Integer, nullable=False)
-    can_mobile= db.Column(db.Integer, nullable=False)
+# class company2(db.Model):
+#     __tablename__ = "company2"
+#     id = db.Column(db.Integer, primary_key = True)
+#     name = db.Column(db.Text, nullable = False)
+#     mobile = db.Column(db.Integer, nullable = False)
+#     email = db.Column(db.Text, nullable= False)
+#     can_email= db.Column(db.Integer, nullable=False)
+#     can_mobile= db.Column(db.Integer, nullable=False)
 
-class company3(db.Model):
-    __tablename__ = "company3"
-    id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.Text, nullable = False)
-    mobile = db.Column(db.Integer, nullable = False)
-    email = db.Column(db.Text, nullable= False)
-    can_email= db.Column(db.Integer, nullable=False)
-    can_mobile= db.Column(db.Integer, nullable=False)
+# class company3(db.Model):
+#     __tablename__ = "company3"
+#     id = db.Column(db.Integer, primary_key = True)
+#     name = db.Column(db.Text, nullable = False)
+#     mobile = db.Column(db.Integer, nullable = False)
+#     email = db.Column(db.Text, nullable= False)
+#     can_email= db.Column(db.Integer, nullable=False)
+#     can_mobile= db.Column(db.Integer, nullable=False)
 
 with app.app_context():
     db.create_all()
@@ -65,7 +66,9 @@ def login():
 
     return render_template("test.html")
 
-# @app.route("")
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method
 
 if __name__ == "__main__":
     app.run(debug=True, host="localhost", port=3000)
