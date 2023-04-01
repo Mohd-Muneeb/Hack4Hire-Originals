@@ -26,6 +26,7 @@ class Customer(db.Model):
     __tablename__ = "customers"
     id = db.Column(db.Integer, primary_key = True)
     company = db.Column(db.Text, nullable=False)
+    company = db.Column(db.Text, nullable=False)
     name = db.Column(db.Text, nullable = False)
     mobile = db.Column(db.Integer, nullable = False)
     email = db.Column(db.Text, nullable= False)

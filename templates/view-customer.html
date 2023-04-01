@@ -1,0 +1,55 @@
+{% include "header.html" %}
+
+
+
+<form style="margin-top: 10vh; width: 60vw; margin-left: 10vw;" method="POST"
+  action="">
+  <p>Enter the Message</p>
+  <label>Message</label>
+  <input type="text" placeholder="Enter Message" name="message" class="card-input">
+
+  <!-- <input type="checkbox" name="mode[]" value="email" />
+  <label>Email</label>
+  <input type="checkbox" name="mode[]" value="sms" />
+  <label>SMS</label>
+  <input type="checkbox" name="mode[]" value="whatsapp" />
+  <label>Whatsapp</label> -->
+
+  <div class="card-body">
+    <h5 class="card-title">Table with stripped rows</h5>
+    <!-- Table with stripped rows -->
+    <div class="card">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Position</th>
+            <th scope="col">Age</th>
+            <th scope="col"></th>
+            <th scope="col">Start Date</th>
+          </tr>
+        </thead>
+
+        <tr>
+          <th scope="row">5</th>
+          <td>Raheem Lehner</td>
+          <td>Dynamic Division Officer</td>
+          <td>47</td>
+
+          <td>
+            <input type="checkbox" />
+          </td>
+          <td>2011-04-19</td>
+        </tr>
+        </tbody>
+      </table>
+      <!-- End Table with stripped rows -->
+
+
+    </div>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+{% include "footer.html" %}
