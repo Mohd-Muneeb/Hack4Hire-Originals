@@ -21,7 +21,7 @@ class Employee( db.Model):
 class Company(db.Model):
     __tablename__ = "company"
     id = db.Column(db.Integer, primary_key = True)
-    company = db.Coulumn(db.Text, nullable=False)
+    company = db.Column(db.Text, nullable=False)
     name = db.Column(db.Text, nullable = False)
     mobile = db.Column(db.Integer, nullable = False)
     email = db.Column(db.Text, nullable= False)
