@@ -62,10 +62,5 @@ def customers():
     return "customers"
 
 
-@app.route("/register")
-def register():
-    return "register"
-
-
 if __name__ == "__main__":
     app.run(debug=True, host="localhost", port=3000)
