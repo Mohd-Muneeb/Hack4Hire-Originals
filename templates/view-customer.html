@@ -3,10 +3,10 @@
 
 <main id="main" class="main">
 
-  <form style="margin-top: 10vh; width: 60vw; margin-left: 10vw;" method="POST" action="/">
+  <form style="margin-top: 10vh; width: 60vw; margin-left: 10vw;" method="POST" action="{{ url_for('read_customers') }}">
     <p>Enter the Message</p>
     <label>Message</label>
-    <input type="text" placeholder="Enter Message" name="message" class="card-input">
+    <input type="text" placeholder="Enter Message" name="message" class="card-input" required>
 
     <div class="card-body">
       <h5 class="card-title">Table with stripped rows</h5>
@@ -15,9 +15,9 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">id</th>
               <th scope="col">Name</th>
-              <th scope="col">Position</th>
+              <th scope="col">Mobile</th>
               <!-- <th scope="col">Age</th> -->
               <th scope="col"></th>
               <th scope="col">Start Date</th>
@@ -26,13 +26,13 @@
           {% for i in customers%}
 
           <tr>
-            <th scope="row">5</th>
+            <th scope="row">{{ i.id }}</th>
             <td>{{i.name}}</td>
-            <td>{{i.number}}</td>
+            <td>{{i.mobile}}</td>
             <!-- <td></td> -->
 
             <td>
-              <input type="checkbox" name={{i}} />
+              <input type="checkbox" name={{i.id}} />
             </td>
             <td>2011-04-19</td>
           </tr>
@@ -44,7 +44,7 @@
 
       </div>
     </div>
-    <button type="submit">Delete</button>
+    <!-- <button type="submit">Delete</button> -->
     <button type="submit">Submit</button>
   </form>
 </main>

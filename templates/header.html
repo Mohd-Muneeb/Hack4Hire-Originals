@@ -71,7 +71,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="{{ url_for('home') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -83,12 +83,12 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="create-members">
+            <a href="{{ url_for('create_member') }}">
               <i class="bi bi-circle"></i><span>Create Employe</span>
             </a>
           </li>
           <li>
-            <a href="view-members">
+            <a href="{{ url_for('read_members') }}">
               <i class="bi bi-circle"></i><span>View Employes</span>
             </a>
           </li>
@@ -101,41 +101,19 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="create-customers">
+            <a href="{{ url_for('add_customer') }}">
               <i class="bi bi-circle"></i><span>Create Customers</span>
             </a>
           </li>
           <li>
-            <a href="view-customers">
+            <a href="{{ url_for('read_customers') }}">
               <i class="bi bi-circle"></i><span>View Customers</span>
             </a>
           </li>
         </ul>
       </li><!-- End customer Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Managements</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="send-mail">
-              <i class="bi bi-circle"></i><span>Send Mails</span>
-            </a>
-          </li>
-          <li>
-            <a href="send-sms">
-              <i class="bi bi-circle"></i><span>Send SMS</span>
-            </a>
-          </li>
-          <li>
-            <a href="send-whatsapp">
-              <i class="bi bi-circle"></i><span>Send Whatsapp Message</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End customer Nav -->
-        <a href="{{url_for('logout')}}"></a>
+        <a href="{{url_for('logout')}}">Logout</a>
     </ul>
 
   </aside><!-- End Sidebar-->

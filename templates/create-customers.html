@@ -6,31 +6,31 @@
         <h5 class="card-title">Create Customer</h5>
 
         <!-- Vertical Form -->
-        <form class="row g-3 justify-content-center">
+        <form class="row g-3 justify-content-center" action="{{ url_for('add_customer') }}" method="post">
             <div class="col-12">
             <label for="inputNanme4" class="form-label">Customer Name</label>
-            <input type="text" class="form-control" id="inputNanme4">
+            <input type="text" name="name" class="form-control" id="inputNanme4">
             </div>
             <div class="col-12">
             <label for="inputEmail4" class="form-label">Customer Email</label>
-            <input type="email" class="form-control" id="inputEmail4">
+            <input type="email" name="email" class="form-control" id="inputEmail4">
             </div>
             <div class="col-12">
                 <label for="inputNanme4" class="form-label">Customer Mobile</label>
-                <input type="text" class="form-control" id="inputNanme4">
+                <input type="text" name="mobile" class="form-control" id="inputNanme4">
                 </div>
             <br>
             <fieldset class="row mb-3">
                 <legend class="col-form-label col-sm-2 pt-0">Can Mail</legend>
                 <div class="col-sm-10">
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" >
+                    <input class="form-check-input" name="canEmail" type="radio" name="gridRadios" id="gridRadios1" value="1" >
                     <label class="form-check-label" for="gridRadios1">
                       Yes
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" checked>
+                    <input class="form-check-input" name="canEmail" type="radio" name="gridRadios" id="gridRadios2" value="0" checked>
                     <label class="form-check-label" for="gridRadios2">
                       No
                     </label>
@@ -41,13 +41,13 @@
                 <legend class="col-form-label col-sm-2 pt-0">Can Mobile</legend>
                 <div class="col-sm-10">
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" >
+                    <input class="form-check-input" name="canMobile" type="radio" name="gridRadios" id="gridRadios1" value="1" >
                     <label class="form-check-label" for="gridRadios1">
                       Yes
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" checked>
+                    <input class="form-check-input" name="canMobile" type="radio" name="gridRadios" id="gridRadios2" value="0" checked>
                     <label class="form-check-label" for="gridRadios2">
                       No
                     </label>
@@ -56,7 +56,7 @@
             </fieldset>
             <div class="text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-secondary">Reset</button>
+            <!-- <button type="reset" class="btn btn-secondary">Reset</button> -->
             </div>
         </form><!-- Vertical Form -->
 
