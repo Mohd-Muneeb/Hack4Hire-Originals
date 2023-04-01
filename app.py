@@ -47,9 +47,9 @@ def login():
 
     return render_template("test.html")
 
-# @app.route("/register", methods=["GET", "POST"])
-# def register():
-#     if request.method
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method: pass
 
 
 @app.route("/members")
