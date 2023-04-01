@@ -1,11 +1,9 @@
 from flask import *
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "SDC12345"
-
-
 
 # Database Employees
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///employee.db"
@@ -66,6 +64,22 @@ def login():
     return render_template("test.html")
 
 # @app.route("")
+
+
+@app.route("/members")
+def members():
+    return "members"
+
+
+@app.route("/customers")
+def customers():
+    return "customers"
+
+
+@app.route("/register")
+def register():
+    return "register"
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="localhost", port=3000)
