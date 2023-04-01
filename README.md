@@ -1,7 +1,10 @@
 
 # CRM
 
-This project is a CRM web application which is built using Flask. The application allows the user to have 
+This project is a CRM web application which is built using Flask. The application allows the user to have features like
+- Text Messaging
+- Whatsapp messaging
+- Email
 
 
 ## Authors
