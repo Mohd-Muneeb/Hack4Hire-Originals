@@ -27,7 +27,6 @@ class Customer(db.Model):
     __tablename__ = "customers"
     id = db.Column(db.Integer, primary_key = True)
     company = db.Column(db.Text, nullable=False)
-    company = db.Column(db.Text, nullable=False)
     name = db.Column(db.Text, nullable = False)
     mobile = db.Column(db.Integer, nullable = False)
     email = db.Column(db.Text, nullable= False)
@@ -71,11 +70,11 @@ def admin_only(f):
 def load_user(user_id):
     return Employee.query.get(user_id)
 
-
+ 
 @app.route("/home")
 @login_required
 def home():
-    return render_template("index.html")
+    return render_template("index.html", current_user=current_user, is_admin=is_admin())
 
 @app.route("/create-member", methods=["GET", "POST"])
 @login_required
@@ -95,14 +94,14 @@ def create_member():
         )
         db.session.add(new_employee)
         db.session.commit()
-    return render_template("create-member.html")
+    return render_template("create-member.html", current_user=current_user, is_admin=is_admin())
 
 @app.route("/read-members")
 @login_required
 def read_members():
     company = current_user.company
     employees = Employee.query.filter_by(company=company).all()
-    return render_template("view-members.html", employees=employees)
+    return render_template("view-members.html", current_user=current_user, is_admin=is_admin(), employees=employees)
 
 @app.route("/add-customer", methods=["GET", "POST"])
 @login_required
@@ -125,8 +124,23 @@ def add_customer():
         db.session.add(new_customer)
         db.session.commit()
         return redirect(url_for('add_customer'))
-    return render_template("create-customers.html")
+    return render_template("create-customers.html", current_user=current_user, is_admin=is_admin())
 
+@app.route("/edit-customer/<int:id>", methods=["GET", "POST"])
+@login_required
+def edit_customer(id):
+    customer = db.session.get(Customer, id)
+    if request.method=="POST":
+        customer.name = request.form.get("name")
+        customer.email = request.form.get("email")
+        customer.mobile = request.form.get("mobile")
+        email, mobile = request.form.get("canMail"), request.form.get("canMobile")
+        customer.can_email = int(email)
+        customer.can_mobile = int(mobile)
+        db.session.commit()
+        return redirect(url_for('read_customers'))
+
+    return render_template("edit-customers.html", customer=customer, is_admin=is_admin())
 
 @app.route("/read-customers", methods=["GET", "POST"])
 @login_required
@@ -139,19 +153,22 @@ def read_customers():
             if is_checked:
                 message = request.form.get("message")
                 if customer.can_email == 1:
-                    msg = Message(
-                    f'From {customer.company}',
-                    sender ='nannapravalika566@gmail.com',
-                    recipients = customer.email
-                    )
-                    msg.body = message
-                    mail.send(msg)
+                    try:
+                        msg = Message(
+                        f'From {customer.company}',
+                        sender ='nannapravalika566@gmail.com',
+                        recipients = customer.email
+                        )
+                        msg.body = message
+                        mail.send(msg)
+                    except:
+                        pass
 
                 if customer.can_mobile == 1:
                     send_sms(6305461499, message)
                     send_whatsapp(6305461499, message)
         return redirect(url_for('read_customers'))
-    return render_template("view-customer.html", customers=customers)
+    return render_template("view-customer.html", current_user=current_user, is_admin=is_admin(), customers=customers)
 
 # Login Manager
 @app.route("/login", methods=["GET", "POST"])

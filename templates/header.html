@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>CRM</title>
+  <title>{{ current_user.company }}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -39,17 +39,11 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="{{ url_for('static', filename='img/logo.png') }}" alt="">
-        <span class="d-none d-lg-block">CRM</span>
+        <span class="d-none d-lg-block">{{ current_user.company }}</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -76,24 +70,26 @@
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Manage Employes</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{ url_for('create_member') }}">
-              <i class="bi bi-circle"></i><span>Create Employe</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{ url_for('read_members') }}">
-              <i class="bi bi-circle"></i><span>View Employes</span>
-            </a>
-          </li>
-         <!-- End empolyes Nav -->
-        </ul>
+      {% if is_admin: %}
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-menu-button-wide"></i><span>Manage Employees</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{{ url_for('create_member') }}">
+                <i class="bi bi-circle"></i><span>Create Employee</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ url_for('read_members') }}">
+                <i class="bi bi-circle"></i><span>View Employees</span>
+              </a>
+            </li>
+          <!-- End empolyes Nav -->
+          </ul>
+        </li>
+      {% endif %}
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -114,25 +110,8 @@
       </li><!-- End customer Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Managements</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="send-mail">
-              <i class="bi bi-circle"></i><span>Send Mails</span>
-            </a>
-          </li>
-          <li>
-            <a href="send-sms">
-              <i class="bi bi-circle"></i><span>Send SMS</span>
-            </a>
-          </li>
-          <li>
-              <a href="{{url_for('logout')}}">Logout</a>
-          </li>
-        </ul>
-      </li>  
+          <a href="{{url_for('logout')}}">Logout</a>
+      </li>
     </ul>
 
   </aside><!-- End Sidebar-->
