@@ -84,13 +84,13 @@ def create_member():
         email = request.form.get("email")
         password = request.form.get("password")
         company = current_user.company
-        is_admin = request.form.get("isAdmin")
+        isAdmin = request.form.get("isAdmin")
         new_employee = Employee(
             ename=ename, 
             password=password, 
             company=company, 
             email=email,
-            is_admin=int(is_admin)
+            is_admin=int(isAdmin)
         )
         db.session.add(new_employee)
         db.session.commit()
