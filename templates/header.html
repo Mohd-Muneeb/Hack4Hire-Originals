@@ -113,7 +113,26 @@
         </ul>
       </li><!-- End customer Nav -->
 
-        <a href="{{url_for('logout')}}">Logout</a>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Managements</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="send-mail">
+              <i class="bi bi-circle"></i><span>Send Mails</span>
+            </a>
+          </li>
+          <li>
+            <a href="send-sms">
+              <i class="bi bi-circle"></i><span>Send SMS</span>
+            </a>
+          </li>
+          <li>
+              <a href="{{url_for('logout')}}">Logout</a>
+          </li>
+        </ul>
+      </li>  
     </ul>
 
   </aside><!-- End Sidebar-->
