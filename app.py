@@ -5,8 +5,6 @@ app = Flask(__name__)
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "SDC12345"
 
-
-
 # Database Employees
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///employee.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -21,8 +19,6 @@ class User( db1.Model):
     is_admin = db1.Column(db1.Integer, nullable=False)
 
 db1.create_all()
-
-
 
 # Database Customer
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///customer.db"
@@ -67,6 +63,22 @@ def home():
 def login():
 
     return render_template("login.html")
+
+
+@app.route("/members")
+def members():
+    return "members"
+
+
+@app.route("/customers")
+def customers():
+    return "customers"
+
+
+@app.route("/register")
+def register():
+    return "register"
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="localhost", port=3000)
