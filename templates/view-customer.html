@@ -2,7 +2,7 @@
 
 
 
-<form style="margin-top: 10vh; width: 60vw; margin-left: 10vw;" method="POST" action="">
+<form style="margin-top: 10vh; width: 60vw; margin-left: 10vw;" method="POST" action="/">
   <p>Enter the Message</p>
   <label>Message</label>
   <input type="text" placeholder="Enter Message" name="message" class="card-input">
@@ -17,7 +17,7 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Position</th>
-            <th scope="col">Age</th>
+            <!-- <th scope="col">Age</th> -->
             <th scope="col"></th>
             <th scope="col">Start Date</th>
           </tr>
@@ -26,12 +26,12 @@
 
         <tr>
           <th scope="row">5</th>
-          <td>Raheem Lehner</td>
-          <td>Dynamic Division Officer</td>
-          <td>47</td>
+          <td>{{i.name}}</td>
+          <td>{{i.number}}</td>
+          <!-- <td></td> -->
 
           <td>
-            <input type="checkbox" name="customers[]" value={{i}} />
+            <input type="checkbox" name={{i}} />
           </td>
           <td>2011-04-19</td>
         </tr>
@@ -43,6 +43,7 @@
 
     </div>
   </div>
+  <button type="submit" >Delete</button>
   <button type="submit">Submit</button>
 </form>
 
