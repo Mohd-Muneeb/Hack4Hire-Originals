@@ -67,6 +67,18 @@ def load_user(user_id):
 def home():
     return render_template("index.html")
 
+@app.route("/create-member", methods=["GET", "POST"])
+def create_member():
+    return render_template("create-member.html")
+
+@app.route("/edit-members")
+def edit_members():
+    return render_template("edit-members.html")
+
+@app.route("/read-members")
+def read_members():
+    return render_template("view-members.html")
+
 @app.route("/add-customer", methods=["GET", "POST"])
 def add_customer():
     if request.method=="POST":
@@ -86,6 +98,13 @@ def add_customer():
         )
         db.session.add(new_customer)
         db.session.commit()
+    return render_template("create-customers.html")
+
+@app.route("/edit-customers")
+def edit_customers():
+    return render_template("edit-customers.html")
+
+
 
 @app.route("/read-customers")
 def read_customers():
