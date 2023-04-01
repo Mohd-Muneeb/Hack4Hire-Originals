@@ -31,4 +31,7 @@ For deployment use a WSGI server
 
 The application the following interface
 
+![image](https://user-images.githubusercontent.com/51262281/229291025-71fba788-ed56-471a-887d-f59e9c6aa4d9.png)
+
+
 Finally, we thank **SDC** and **TalentMapp** for this opportunity
