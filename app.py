@@ -100,7 +100,9 @@ def create_member():
 @app.route("/read-members")
 @login_required
 def read_members():
-    return render_template("view-members.html")
+    company = current_user.company
+    employees = Employee.query.filter_by(company=company).all()
+    return render_template("view-members.html", employees=employees)
 
 @app.route("/add-customer", methods=["GET", "POST"])
 @login_required
