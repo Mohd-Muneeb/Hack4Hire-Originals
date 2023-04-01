@@ -37,6 +37,10 @@ with app.app_context():
 def home():
     return render_template("index.html")
 
+@app.route("/create-members")
+def create():
+    return render_template("create-member.html")
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
