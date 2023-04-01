@@ -67,7 +67,7 @@ def login():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    if request.method
+    if request.method: pass
 
 
 @app.route("/members")
