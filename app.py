@@ -1,5 +1,6 @@
 from flask import *
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail, Message
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required, current_user
 from functools import wraps
 from send_notify import *
@@ -36,6 +37,15 @@ class Customer(db.Model):
 with app.app_context():
     db.create_all()
 
+# configuration of mail
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'nannapravalika566@gmail.com'
+app.config['MAIL_PASSWORD'] = 'diizvvdawrwsdyuo'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
+
 # Login Manager
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -70,12 +80,22 @@ def home():
 @app.route("/create-member", methods=["GET", "POST"])
 @login_required
 def create_member():
+    if request.method == "POST":
+        ename = request.form.get("ename")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        company = current_user.company
+        is_admin = request.form.get("isAdmin")
+        new_employee = Employee(
+            ename=ename, 
+            password=password, 
+            company=company, 
+            email=email,
+            is_admin=int(is_admin)
+        )
+        db.session.add(new_employee)
+        db.session.commit()
     return render_template("create-member.html")
-
-@app.route("/edit-members")
-@login_required
-def edit_members():
-    return render_template("edit-members.html")
 
 @app.route("/read-members")
 @login_required
@@ -102,25 +122,34 @@ def add_customer():
         )
         db.session.add(new_customer)
         db.session.commit()
+        return redirect(url_for('add_customer'))
     return render_template("create-customers.html")
 
-@app.route("/edit-customers")
-@login_required
-def edit_customers():
-    return render_template("edit-customers.html")
 
-@app.route("/read-customers")
+@app.route("/read-customers", methods=["GET", "POST"])
 @login_required
 def read_customers():
-    # company = current_user.company
-    # customers = Customer.query.filter_by(company=company).first()
-    return render_template("view-customer.html")
-
-@app.route("/send-notifications", methods=["GET", "POST"])
-@login_required
-def send_notifications():
+    company = current_user.company
+    customers = Customer.query.filter_by(company=company).all()
     if request.method == "POST":
-        pass
+        for customer in customers:
+            is_checked = request.form.get(str(customer.id))
+            if is_checked:
+                message = request.form.get("message")
+                if customer.can_email == 1:
+                    msg = Message(
+                    f'From {customer.company}',
+                    sender ='nannapravalika566@gmail.com',
+                    recipients = customer.email
+                    )
+                    msg.body = message
+                    mail.send(msg)
+
+                if customer.can_mobile == 1:
+                    send_sms(6305461499, message)
+                    send_whatsapp(6305461499, message)
+        return redirect(url_for('read_customers'))
+    return render_template("view-customer.html", customers=customers)
 
 # Login Manager
 @app.route("/login", methods=["GET", "POST"])
